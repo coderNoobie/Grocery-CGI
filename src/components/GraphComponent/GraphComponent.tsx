@@ -123,9 +123,6 @@ function GraphComponent(props: any) {
           </div>
           {graphData && graphData.length > 0 && (
             <>
-              <CsvDownload className="download-btn" data={graphData}>
-                Download Report
-              </CsvDownload>
               <LineChart
                 className="graph-block"
                 width={1000}
@@ -138,6 +135,11 @@ function GraphComponent(props: any) {
                 <Tooltip />
                 <Legend />
               </LineChart>
+              <div className="csv-download">
+                <CsvDownload className="download-btn" data={graphData}>
+                  Download Report
+                </CsvDownload>
+              </div>
             </>
           )}
           {graphData && graphData.length == 0 && (
