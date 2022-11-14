@@ -1,5 +1,35 @@
-.Search-Filter{
-    border: 1px solid black;
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    margin-top: 30%;
+}
+
+.Search-Filter {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
+        gap: 2%;
+        margin: 20px;
+    }
+    
+    .nodata-txt {
+        text-align: center;
+        font-size: x-large;
+    }
+    
+    .graph-block {
+        margin-left: 15%;
+        margin-top: 2rem;
+    }
+    
+    .download-btn {
+        height: 35px;
+        margin-left: 1rem;
+        background-color: #5236ab;
+        border: 0;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
 }

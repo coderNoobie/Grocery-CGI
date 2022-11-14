@@ -1,0 +1,10 @@
+.Search-btn {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    justify-content: flex-end;
+}
+
+.button-div {
+    margin-left: 2px;
+}

@@ -66,6 +66,7 @@ function GraphComponent(props: any) {
     query.itemName = item;
     query.from = convertDatetoYYYYMMHH(fromDate as Date);
     query.to = convertDatetoYYYYMMHH(toDate as Date);
+    query.greaterThan = 0.0;
     options.query = query;
     get(CONSTANTS.GET_DETAILS_URL, options)
       .then((data) => {
@@ -85,15 +86,20 @@ function GraphComponent(props: any) {
     getProductsFromAPI();
   }, []);
   return (
-    <>
-      {isLoading && <Loader />}
+    <div>
+      {isLoading && (
+        <div className="loader">
+          <Loader />
+        </div>
+      )}
       {!isLoading && (
-        <>
+        <div>
           <div className="Search-Filter">
             <DropDownFilter
               value={item}
               data={itemList}
-              label="Pick Item"
+              placeholder="Pick Item"
+              // label="Pick Item"
               onChange={setItem}
             />
             <CustomDatePicker
@@ -108,16 +114,24 @@ function GraphComponent(props: any) {
               minDate={fromDate}
               placeHolder="Select To Date"
             />
+            <CustomButton disabled={!buttonEnable} onClick={fetchData}>
+              Search
+            </CustomButton>
           </div>
-          <CustomButton disabled={!buttonEnable} onClick={fetchData}>
-            Search
-          </CustomButton>
-
-          {!graphData && <>Please select Data from Filters</>}
+          <div className="nodata-txt">
+            {!graphData && <>Please select Data from Filters</>}
+          </div>
           {graphData && graphData.length > 0 && (
             <>
-              <CsvDownload data={graphData}>DownLoad Report</CsvDownload>
-              <LineChart width={800} height={800} data={graphData}>
+              <CsvDownload className="download-btn" data={graphData}>
+                Download Report
+              </CsvDownload>
+              <LineChart
+                className="graph-block"
+                width={1000}
+                height={600}
+                data={graphData}
+              >
                 <Line type="monotone" dataKey="price" stroke="#8884d8" />
                 <XAxis dataKey="datesk" />
                 <YAxis />
@@ -126,10 +140,12 @@ function GraphComponent(props: any) {
               </LineChart>
             </>
           )}
-          {graphData && graphData.length == 0 && <>Sorry no records foundx</>}
-        </>
+          {graphData && graphData.length == 0 && (
+            <p className="nodata-txt">Sorry no records foundx</p>
+          )}
+        </div>
       )}
-    </>
+    </div>
   );
 }
 export default GraphComponent;

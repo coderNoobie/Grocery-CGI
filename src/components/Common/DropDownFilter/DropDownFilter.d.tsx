@@ -1,6 +1,7 @@
 export interface DropDownFilterProps {
-    label: string;
-    data: Array<string>;
-    value: string;
-    onChange: (e: any) => void;
+  // label: string;
+  placeholder: string;
+  data: Array<string>;
+  value: string;
+  onChange: (e: any) => void;
 }

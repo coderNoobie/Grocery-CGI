@@ -5,11 +5,17 @@ import CustomDatePicker from './components/Common/CustomDatePicker/CustomDatePic
 import DropDownFilter from './components/Common/DropDownFilter/DropDownFilter';
 import CustomButton from './components/Common/CustomButton/CustomButton';
 import GraphComponent from './components/GraphComponent/GraphComponent';
+import TopNav from "./components/TopNav/TopNav";
 
 function App() {
-  const [name, setName] = useState<string>("")
-  const [item, setItem] = useState<string>("")
-  const [itemList, setItemList] = useState<any>(["sai", "kumnar", "SAIAS","KUMAR"])
+  const [name, setName] = useState<string>("");
+  const [item, setItem] = useState<string>("");
+  const [itemList, setItemList] = useState<any>([
+    "sai",
+    "kumnar",
+    "SAIAS",
+    "KUMAR",
+  ]);
 
   const [fromDate, setFromDate] = useState(undefined);
   const [toDate, setToDate] = useState(undefined);
@@ -17,51 +23,49 @@ function App() {
   //Button states
   const [buttonEnable, enableButton] = useState<boolean>(false);
 
-
   function handleInputChange(e: any) {
-    setName(e.target.value)
+    setName(e.target.value);
   }
 
   function checkButtonDisable() {
-    console.log("Button checking")
-    if(item && fromDate && toDate) {
-      enableButton(true)
+    console.log("Button checking");
+    if (item && fromDate && toDate) {
+      enableButton(true);
     }
   }
 
   function fetchData() {
-    console.log("Fetch data from API")
-    console.log("Fetching data for")
-    console.log(item)
+    console.log("Fetch data from API");
+    console.log("Fetching data for");
+    console.log(item);
     //console.log(fromDate.getTime())
-    console.log(toDate)
-    
+    console.log(toDate);
   }
 
   useEffect(() => {
-    checkButtonDisable()
+    checkButtonDisable();
   }, [item, fromDate, toDate]);
 
   function fromChild(e: any) {
-    console.log("From child rero")
+    console.log("From child rero");
     //console.log(date)
-    console.log(item)
-    
+    console.log(item);
   }
   return (
-    <div>
-      <header>
-        <input value={name} onChange={fromChild}/>
+    <>
+      <TopNav />
+      {/* <GraphComponent /> */}
+      {/* <header> */}
+      {/* <input value={name} onChange={fromChild}/>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <GraphComponent />
-        {/* <DropDownFilter value={'item'} data={itemList} label="Pick Item" onChange={setItem}/>
+        </p> */}
+      {/* <DropDownFilter value={'item'} data={itemList} label="Pick Item" onChange={setItem}/>
         <CustomDatePicker value={fromDate} onChange={setFromDate} placeHolder="Select From Date"/>
         <CustomDatePicker disabled={!fromDate} value={toDate} onChange={setToDate} minDate={fromDate} placeHolder="Select To Date"/>
         <CustomButton disabled={!buttonEnable} onClick={fetchData}>Search</CustomButton> */}
-      </header>
-    </div>
+      {/* </header> */}
+    </>
   );
 }
 
